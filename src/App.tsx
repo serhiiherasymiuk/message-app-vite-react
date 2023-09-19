@@ -4,12 +4,14 @@ import { Route, Routes } from "react-router-dom";
 import DefaultLayout from "./components/default/DefaultLayout.tsx";
 import LoginPage from "./components/auth/login/LoginPage.tsx";
 import RegisterPage from "./components/auth/register/RegisterPage.tsx";
+import MessageList from "./components/message/list/MessageList.tsx";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
+          <Route index element={<MessageList />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
         </Route>
