@@ -1,4 +1,17 @@
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AuthUserActionType, IAuthUser } from "../../entities/Auth.ts";
+
 const DefaultHeader = () => {
+  const dispatch = useDispatch();
+  const onLogoutHandler = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("access_token");
+    dispatch({ type: AuthUserActionType.LOGOUT_USER });
+  };
+
+  const { isAuth } = useSelector((store: any) => store.auth as IAuthUser);
+
   return (
     <>
       <header className="bg-white">
@@ -17,36 +30,41 @@ const DefaultHeader = () => {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             <div className="relative">
-              <button
-                type="button"
+              <Link
+                to={"/"}
                 className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
                 aria-expanded="false"
               >
                 Messages
+              </Link>
+            </div>
+          </div>
+          {isAuth ? (
+            <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+              <button
+                onClick={onLogoutHandler}
+                type={"button"}
+                className="text-sm font-semibold leading-6 text-gray-900 mr-5"
+              >
+                Logout
               </button>
             </div>
-
-            <a
-              href="#"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Create new message
-            </a>
-          </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a
-              href="#"
-              className="text-sm font-semibold leading-6 text-gray-900 mr-5"
-            >
-              Sign in
-            </a>
-            <a
-              href="#"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
+          ) : (
+            <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+              <Link
+                to={"/register"}
+                className="text-sm font-semibold leading-6 text-gray-900 mr-5"
+              >
+                Sign in
+              </Link>
+              <Link
+                to={"/login"}
+                className="text-sm font-semibold leading-6 text-gray-900"
+              >
+                Log in <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
+          )}
         </nav>
       </header>
     </>
