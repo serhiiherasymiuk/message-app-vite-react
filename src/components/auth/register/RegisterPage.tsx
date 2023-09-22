@@ -58,9 +58,11 @@ function RegisterPage() {
             payload: {
               name: user.name,
               email: user.email,
+              image: user.image,
+              id: user.id,
             },
           });
-          navigate("/");
+          navigate("/messages/page/1");
         });
       navigate("/");
     } catch (error) {

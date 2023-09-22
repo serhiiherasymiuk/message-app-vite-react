@@ -45,10 +45,12 @@ function LoginPage() {
         payload: {
           name: user.name,
           email: user.email,
+          image: user.image,
+          id: user.id,
         },
       });
       setMessage("");
-      navigate("/");
+      navigate("/messages/page/1");
     } catch {
       setMessage("Invalid email or password");
     }

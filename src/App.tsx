@@ -11,7 +11,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
-          <Route index element={<MessageList />} />
+          <Route path="/messages/page/:page" element={<MessageList />}></Route>
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
         </Route>

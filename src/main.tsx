@@ -20,6 +20,7 @@ if (localStorage.token) {
       email: user.email,
       name: user.name,
       image: user.image,
+      id: user.id,
     },
   });
 }

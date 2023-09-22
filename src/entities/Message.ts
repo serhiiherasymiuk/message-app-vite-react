@@ -7,4 +7,12 @@ export interface IMessage {
   user_id: number;
   user: IUser;
   created_at: string;
+  image: File | null;
+}
+
+export interface IMessageCreate {
+  image: File | null;
+  text: string;
+  parent_id: number | null;
+  user_id: number;
 }

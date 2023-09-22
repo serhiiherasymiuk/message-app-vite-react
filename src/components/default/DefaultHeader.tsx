@@ -6,7 +6,6 @@ const DefaultHeader = () => {
   const dispatch = useDispatch();
   const onLogoutHandler = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("access_token");
     dispatch({ type: AuthUserActionType.LOGOUT_USER });
   };
 
@@ -28,10 +27,44 @@ const DefaultHeader = () => {
               />
             </a>
           </div>
+          <div className="lg:hidden">
+            <Link
+              to={"/messages/page/1"}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Messages
+            </Link>
+          </div>
+          {isAuth ? (
+            <div className="lg:hidden">
+              <button
+                onClick={onLogoutHandler}
+                type={"button"}
+                className="text-sm font-semibold leading-6 text-gray-900 mr-5"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div className="lg:hidden">
+              <Link
+                to={"/register"}
+                className="text-sm font-semibold leading-6 text-gray-900 mr-5"
+              >
+                Sign in
+              </Link>
+              <Link
+                to={"/login"}
+                className="text-sm font-semibold leading-6 text-gray-900"
+              >
+                Log in <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
+          )}
           <div className="hidden lg:flex lg:gap-x-12">
             <div className="relative">
               <Link
-                to={"/"}
+                to={"/messages/page/1"}
                 className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
                 aria-expanded="false"
               >
