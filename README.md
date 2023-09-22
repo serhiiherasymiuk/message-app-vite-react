@@ -1,3 +1,5 @@
+A test task written in Vite React Typescript that implements the ability to create messages and cascade responses to them. It is possible to view and create messages and replies to them, filter messages, and the possibility of authorization is implemented on jwt tokens. The project is hosted on VDS
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
